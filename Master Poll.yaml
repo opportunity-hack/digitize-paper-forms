@@ -1,0 +1,378 @@
+modules:
+- {name: Module1, code: "import google.auth, google.drive\nfrom google.drive import\
+    \ app_files\nimport anvil.server\nimport tables\nfrom tables import app_tables\n\
+    \ndef get_count():\n  return anvil.server.call_s('get_counter')\n\ndef increase_to_arctic():\n\
+    \  row = list(app_tables.count.search())\n  row[0]['counter'] += 7\n  \ndef check():\n\
+    \  count = list(app_tables.count.search())\n  row = list(app_tables.questions.search())\n\
+    \  arctic = row[0]['Choice1_Value']\n  forest = row[0]['Choice2_Value']\n  arc\
+    \ = count[0]['arcticW']\n  if arc == True: #arctic > forest\n    increase_to_arctic()\n\
+    \  else:\n    increase_count()\n\ndef increase_count():\n  row = list(app_tables.count.search())\n\
+    \  row[0]['counter'] += 1\n  \ndef results():\n  return anvil.server.call_s('get_results')\n\
+    \ndef selectionTrue():\n  return anvil.server.call_s('selectionT')\n  \ndef winnerA():\n\
+    \  return anvil.server.call_s('winnerArc')\n  \ndef selectionFalse():\n  return\
+    \ anvil.server.call_s('selectionF')\n  \ndef getSelection():\n  return anvil.server.call_s('get_selection')\n\
+    \ndef say_hello():\n  print \"Hello, world\""}
+exported_table_schema:
+- id: 2680
+  columns:
+    LUFy3GDsAvM=:
+      name: arcticW
+      type: bool
+      admin_ui: {order: 3, width: 200}
+    QxtetTj74Cs=:
+      name: selectionMade
+      type: bool
+      admin_ui: {order: 2, width: 200}
+    TgDMf64SB5Y=:
+      name: next_clicked
+      type: bool
+      admin_ui: {order: 1, width: 200}
+    se4a91udSBs=:
+      name: counter
+      type: number
+      admin_ui: {order: 0, width: 200}
+  name: count
+  server: full
+  client: full
+  python_name: count
+- id: 2640
+  columns:
+    JZWQwtzjAXk=:
+      name: question
+      type: string
+      admin_ui: {order: 0, width: 200}
+    hIxutc0_nZk=:
+      name: Choice2_Value
+      type: number
+      admin_ui: {order: 4, width: 200}
+    poktj+4ZoFo=:
+      name: Choice1_Value
+      type: number
+      admin_ui: {order: 3, width: 200}
+    sRNRx6ittUQ=:
+      name: Choice1
+      type: string
+      admin_ui: {order: 1, width: 200}
+    wzbnvBxVF_k=:
+      name: Choice2
+      type: string
+      admin_ui: {order: 2, width: 200}
+    yGUwj54gTFM=:
+      name: place
+      type: number
+      admin_ui: {order: 5, width: 200}
+  name: questions
+  server: full
+  client: search
+  python_name: questions
+services:
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {}
+- source: /runtime/services/google.yml
+  client_config:
+    app_files:
+    - capabilities: {canCopy: false, canEdit: true}
+      editable: true
+      copyable: false
+      embedLink: https://drive.google.com/embeddedfolderview?id=0Bzp5BAvXQlerNzhWMWVIUnJROUE
+      python_name: images
+      explicitlyTrashed: false
+      lastModifyingUser:
+        kind: drive#user
+        displayName: Courtney Ngai
+        picture: {url: 'https://lh6.googleusercontent.com/-21xix46dMWU/AAAAAAAAAAI/AAAAAAAAAf8/SuoHK_OL0QI/s64/photo.jpg'}
+        isAuthenticatedUser: true
+        permissionId: '15089667730999165875'
+        emailAddress: ctngai@asu.edu
+      shared: true
+      createdDate: '2017-10-02T06:55:26.774Z'
+      id: 0Bzp5BAvXQlerNzhWMWVIUnJROUE
+      owners:
+      - kind: drive#user
+        displayName: Courtney Ngai
+        picture: {url: 'https://lh6.googleusercontent.com/-21xix46dMWU/AAAAAAAAAAI/AAAAAAAAAf8/SuoHK_OL0QI/s64/photo.jpg'}
+        isAuthenticatedUser: true
+        permissionId: '15089667730999165875'
+        emailAddress: ctngai@asu.edu
+      markedViewedByMeDate: '1970-01-01T00:00:00.000Z'
+      spaces: [drive]
+      parents:
+      - {kind: drive#parentReference, id: 0ADp5BAvXQlerUk9PVA, selfLink: 'https://www.googleapis.com/drive/v2/files/0Bzp5BAvXQlerNzhWMWVIUnJROUE/parents/0ADp5BAvXQlerUk9PVA',
+        parentLink: 'https://www.googleapis.com/drive/v2/files/0ADp5BAvXQlerUk9PVA',
+        isRoot: true}
+      labels: {starred: false, hidden: false, trashed: false, restricted: false, viewed: true}
+      iconLink: https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.folder+shared
+      permission: roclient
+      selfLink: https://www.googleapis.com/drive/v2/files/0Bzp5BAvXQlerNzhWMWVIUnJROUE
+      lastViewedByMeDate: '2017-11-14T01:55:08.589Z'
+      userPermission: {kind: drive#permission, etag: '"G9mQazc6pdRCuGfUPB_oyY074Ug/SL-Yd12oLH8ejLjFM9qUZGC2SlE"',
+        id: me, selfLink: 'https://www.googleapis.com/drive/v2/files/0Bzp5BAvXQlerNzhWMWVIUnJROUE/permissions/me',
+        role: owner, type: user}
+      lastModifyingUserName: Courtney Ngai
+      etag: '"G9mQazc6pdRCuGfUPB_oyY074Ug/MTUwOTI1NTcwNDExMg"'
+      kind: drive#file
+      modifiedByMeDate: '2017-10-29T05:41:44.112Z'
+      title: Images
+      version: '31'
+      appDataContents: false
+      writersCanShare: true
+      alternateLink: https://drive.google.com/drive/folders/0Bzp5BAvXQlerNzhWMWVIUnJROUE
+      mimeType: application/vnd.google-apps.folder
+      modifiedDate: '2017-10-29T05:41:44.112Z'
+      quotaBytesUsed: '0'
+      ownerNames: [Courtney Ngai]
+    - capabilities: {canCopy: false, canEdit: true}
+      editable: true
+      copyable: false
+      embedLink: https://drive.google.com/embeddedfolderview?id=0Bzp5BAvXQlerRC1yOTFXelFPVnc
+      python_name: images2
+      explicitlyTrashed: false
+      lastModifyingUser:
+        kind: drive#user
+        displayName: Courtney Ngai
+        picture: {url: 'https://lh6.googleusercontent.com/-21xix46dMWU/AAAAAAAAAAI/AAAAAAAAAf8/SuoHK_OL0QI/s64/photo.jpg'}
+        isAuthenticatedUser: true
+        permissionId: '15089667730999165875'
+        emailAddress: ctngai@asu.edu
+      shared: true
+      createdDate: '2017-10-26T05:30:33.846Z'
+      id: 0Bzp5BAvXQlerRC1yOTFXelFPVnc
+      owners:
+      - kind: drive#user
+        displayName: Courtney Ngai
+        picture: {url: 'https://lh6.googleusercontent.com/-21xix46dMWU/AAAAAAAAAAI/AAAAAAAAAf8/SuoHK_OL0QI/s64/photo.jpg'}
+        isAuthenticatedUser: true
+        permissionId: '15089667730999165875'
+        emailAddress: ctngai@asu.edu
+      markedViewedByMeDate: '1970-01-01T00:00:00.000Z'
+      spaces: [drive]
+      parents:
+      - {kind: drive#parentReference, id: 0ADp5BAvXQlerUk9PVA, selfLink: 'https://www.googleapis.com/drive/v2/files/0Bzp5BAvXQlerRC1yOTFXelFPVnc/parents/0ADp5BAvXQlerUk9PVA',
+        parentLink: 'https://www.googleapis.com/drive/v2/files/0ADp5BAvXQlerUk9PVA',
+        isRoot: true}
+      labels: {starred: false, hidden: false, trashed: false, restricted: false, viewed: true}
+      iconLink: https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.folder+shared
+      permission: roclient
+      selfLink: https://www.googleapis.com/drive/v2/files/0Bzp5BAvXQlerRC1yOTFXelFPVnc
+      lastViewedByMeDate: '2017-10-29T05:39:20.491Z'
+      userPermission: {kind: drive#permission, etag: '"G9mQazc6pdRCuGfUPB_oyY074Ug/AC9y9ZAlyMRS3cWn2URLctFZNys"',
+        id: me, selfLink: 'https://www.googleapis.com/drive/v2/files/0Bzp5BAvXQlerRC1yOTFXelFPVnc/permissions/me',
+        role: owner, type: user}
+      lastModifyingUserName: Courtney Ngai
+      etag: '"G9mQazc6pdRCuGfUPB_oyY074Ug/MTUwOTI1NTc3ODY3Ng"'
+      kind: drive#file
+      modifiedByMeDate: '2017-10-29T05:42:58.676Z'
+      title: Images2
+      version: '4'
+      appDataContents: false
+      writersCanShare: true
+      alternateLink: https://drive.google.com/drive/folders/0Bzp5BAvXQlerRC1yOTFXelFPVnc
+      mimeType: application/vnd.google-apps.folder
+      modifiedDate: '2017-10-29T05:42:58.676Z'
+      quotaBytesUsed: '0'
+      ownerNames: [Courtney Ngai]
+  server_config: {}
+forms:
+- code: "from anvil import *\nimport google.drive\n# from google.drive import app_files\n\
+    import anvil.server\nimport tables\nfrom tables import app_tables\nfrom plotly\
+    \ import graph_objs as go\nimport Module1\n\n#pic_folder = google.drive.app_files.images\n\
+    #doubles_folder = google.drive.app_files.images2\n\nclass Form1(Form1Template):\n\
+    \n  def __init__(self, **properties):\n    # You must call self.init_components()\
+    \ before doing anything else in this function\n    self.init_components(**properties)\n\
+    \    count = list(app_tables.count.search())\n    counter = count[0]['counter']\
+    \ \n    \n    # When the form loads, immediately run the timer \n    # tick event\
+    \ handler to update the plot\n    self.updateTimer_tick()\n\n    # Any code you\
+    \ write here will run when the form opens.\n    questions = anvil.server.call_s('get_results')\n\
+    \    print \"First question: %s\" % questions[counter]['question']\n    self.viewQ.text\
+    \ = questions[counter]['question']\n    \n    #pic = pic_folder.files[0]\n\n \
+    \ def updateTimer_tick (self, **event_args):\n    # This method is called Every\
+    \ [interval] seconds\n    results = anvil.server.call_s('get_results') # Module1.results()\n\
+    \    counter = anvil.server.call_s('get_counter')\n    #imageList = anvil.server.call_s('get_images')\n\
+    \    doublesList = anvil.server.call_s('get_options')\n    selection = anvil.server.call_s('get_selection')\n\
+    \    totalVotes = results[counter]['Choice1_Value'] + results[counter]['Choice2_Value']\n\
+    \    if totalVotes < 5:\n        self.imageLabel.text = results[counter]['Choice1']\
+    \ + \" : \" + results[counter]['Choice2']\n        #self.image.source = doublesList\n\
+    \        Module1.selectionFalse()\n        return\n    else:\n      if results[counter]['Choice1_Value']\
+    \ >= results[counter]['Choice2_Value'] and selection == False:\n        self.imageLabel.text\
+    \ = results[counter]['Choice1']\n        #self.image.source = imageList\n    \
+    \    Module1.selectionTrue()\n        Module1.winnerA()\n      elif results[counter]['Choice1_Value']\
+    \ < results[counter]['Choice2_Value'] and selection == False:\n        self.imageLabel.text\
+    \ = results[counter]['Choice2']\n        #self.image.source = imageList\n    \
+    \    Module1.selectionTrue()\n   \n    \n    #print(mostPopular)\n    # self.viewQ.text\
+    \ = mostPopular\n    \n    length = len(results)\n    if counter == length:\n\
+    \      return\n    \n    '''\n    # Create a Plotly Bar chart with colours along\
+    \ the x-axis\n    # and number of votes on the y-axis.\n    trace1 = go.Bar(\n\
+    \      x=[results[counter]['Choice1_Value']],\n      y=[results[counter]['Choice1']],\n\
+    \      orientation = 'h',\n      name='Choice 1',\n      width=0.5,\n      marker=dict(\n\
+    \        color='rgb(51, 204, 255)'\n      )\n    )\n    \n    trace2 = go.Bar(\n\
+    \      x=[results[counter]['Choice2_Value']],\n      y=[results[counter]['Choice2']],\n\
+    \      orientation = 'h',\n      name='Choice 2',\n      width=0.5,\n      marker=dict(\n\
+    \        color='rgb(51, 204, 51)'\n      )\n    ) \n    self.results_plot.data\
+    \ = [trace2, trace1]\n    \n    # Set the axis and plot labels\n    self.results_plot.layout\
+    \ = go.Layout(\n      yaxis=go.YAxis(\n        #title=\"Votes\",\n        # Start\
+    \ y-axis ticks at 0 and increment by 1.\n        tick0=0,\n        dtick=1\n \
+    \     ),\n      xaxis=go.YAxis(\n        title=\"Choices Made\",\n        dtick=2\n\
+    \      )\n    ) '''\n\n  def next_question_click (self, **event_args):\n    #\
+    \ This method is called when the button is clicked\n    # Module1.increase_count()\n\
+    \    # counter = list(app_tables.count.search()) #Module1.get_count()\n    row\
+    \ = list(app_tables.count.search())\n    if row[0]['counter'] == 0:\n      Module1.check()\n\
+    \    else:\n      row[0]['counter'] += 1\n    row[0]['next_clicked'] = True #\
+    \ Choices Poll\n    counter = Module1.get_count()\n    questions = anvil.server.call_s('get_results')\
+    \ # Module1.results()\n    length = len(questions)\n    if counter < length:\n\
+    \      self.viewQ.text = questions[counter]['question']\n      Module1.selectionFalse()\n\
+    \      print \"Current question: %s\" % questions[counter]['question']\n    else:\n\
+    \      self.viewQ.text = \"The audience has made their choice\"\n      return\n\
+    \    \n\n'''\n  def image_show (self, **event_args):\n    # This method is called\
+    \ when the Image is shown on the screen\n    row = list(app_tables.count.search())\n\
+    \    results = anvil.server.call_s('get_results') # Module1.results()\n    counter\
+    \ = Module1.get_count()\n    if results[counter]['Choice1_Value'] > results[counter]['Choice2_Value']:\n\
+    \        mostPopular = results[counter]['Choice1']\n        self.image.source\
+    \ = row[counter]['images']\n    else:\n        mostPopular = results[counter]['Choice2']\
+    \    \n    \n    length = len(results)\n    if counter == length:\n      return\n\
+    \n'''   "
+  class_name: Form1
+  container:
+    type: ColumnPanel
+    properties: {role: null, width: default, border: '', foreground: '#FFF', visible: true,
+      row_spacing: 10, wrap_on: mobile, spacing_above: small, col_widths: '{}', spacing_below: small,
+      background: '#000'}
+  components:
+  - type: Label
+    properties: {role: null, width: default, align: center, border: '', foreground: '',
+      visible: true, text: 'What''s the question?', font_size: 40, font: Comic Sans MS,
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: viewQ
+    layout_properties: {grid_position: 'IGMLMR,ZQFRWS'}
+    data_bindings: []
+  - type: Label
+    properties: {role: null, width: default, align: center, border: '', foreground: '#7FFF00',
+      visible: true, text: choice Options, font_size: 40, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: imageLabel
+    layout_properties: {grid_position: 'GYFNLY,TZBHXV'}
+  - type: Label
+    properties: {role: null, width: default, align: center, border: '', foreground: '',
+      visible: true, text: 'To access the poll, text the following keyword to 31996:',
+      font_size: 30, font: '', spacing_above: small, icon_align: left, spacing_below: none,
+      italic: false, background: '', bold: true, underline: false, icon: ''}
+    name: label_1
+    layout_properties: {grid_position: 'VZTNJM,IIJKYA'}
+  - type: Label
+    properties: {role: null, width: default, align: center, border: '', foreground: '',
+      visible: true, text: choices, font_size: 38, font: Courier, spacing_above: none,
+      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_2
+    layout_properties: {grid_position: 'GOBGJF,ARNBPY'}
+  - type: Button
+    properties: {role: null, width: default, align: right, border: '', enabled: true,
+      foreground: '', visible: true, text: Next Question, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: 'fa:angle-double-right'}
+    name: next_question
+    layout_properties: {grid_position: 'BQDFQN,YFGVSC'}
+    event_bindings: {click: next_question_click}
+  - type: Label
+    properties: {role: null, width: default, align: left, border: '', foreground: '',
+      visible: true, text: '
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+      italic: false, background: '', bold: false, underline: false, icon: ''}
+    name: label_3
+    layout_properties: {grid_position: 'EMCLRB,IXQZKH'}
+  - type: Timer
+    properties: {interval: 5}
+    name: updateTimer
+    event_bindings: {tick: updateTimer_tick}
+name: Master Poll
+runtime_options: {server_version: python2-sandbox}
+startup_form: Form1
+dependency_code: {}
+theme:
+  templates:
+  - name: Standard Page
+    description: ''
+    img: null
+    form:
+      class_name: Form
+      container:
+        type: HtmlTemplate
+        properties: {html: '@theme:standard-page.html'}
+      components:
+      - type: ColumnPanel
+        properties: {}
+        name: content_panel
+        layout_properties: {slot: default}
+      code: "from anvil import *\n\nclass $NAME$($NAME$Template):\n\n  def __init__(self,\
+        \ **properties):\n    # You must call self.init_components() before doing\
+        \ anything else in this function\n    self.init_components(**properties)\n\
+        \n    # Any code you write here will run when the form opens.\n    \n"
+  parameters:
+    roles: []
+  assets:
+  - {name: theme.css, content: QGltcG9ydCAnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3M/ZmFtaWx5PVBhY2lmaWNvfE11a3R1K01hbGFyJzsNCg0KLypib2R5IHsNCgltYXJnaW46IDA7DQp9Ki8NCg0KYSwgYTp2aXNpdGVkIHsNCiAgY29sb3I6ICNhOTQ0NDINCn0NCg0KYTpob3ZlciwgYTpmb2N1cywgYTphY3RpdmUgew0KICBjb2xvcjogI2Q5NTM0ZjsNCn0NCg0KLm5hdiB7DQogIHBhZGRpbmctbGVmdDogMjBweDsNCiAgcGFkZGluZy1yaWdodDogMjBweDsNCiAgZm9udC1mYW1pbHk6ICJNdWt0dSBNYWxhciIsICJIZWx2ZXRpY2EgTmV1ZSIsICJIZWx2ZXRpY2EiLCBzYW5zLXNlcmlmOw0KfQ0KDQoubmF2LmRhcmsgew0KICBiYWNrZ3JvdW5kLWNvbG9yOiAjNzE3OThjOw0KICBjb2xvcjogd2hpdGU7DQp9DQoNCi5uYXYuZGFyayBhLCAubmF2LmRhcmsgYTp2aXNpdGVkIHsNCiAgY29sb3I6IHdoaXRlOw0KfQ0KDQoubmF2LmRhcmsgYTpob3ZlciwgLm5hdi5kYXJrIGE6YWN0aXZlLCAubmF2LmRhcmsgYTpmb2N1cyB7DQogIGNvbG9yOiAjZWVlOw0KfQ0KDQoNCi5uYXYgLnRpdGxlIHsNCiAgZGlzcGxheTogaW5saW5lLWJsb2NrOw0KfQ0KDQouZGVzaWduZXIgLm5hdi1yaWdodCB7DQogIGZsb2F0OiByaWdodDsNCn0NCg0KLmRlc2lnbmVyIC5uYXYtZWx0IHsNCiAgZGlzcGxheTogaW5saW5lLWJsb2NrOw0KICB2ZXJ0aWNhbC1hbGlnbjogdG9wOw0KICBtYXJnaW4tbGVmdDogMTVweDsNCiAgcG9zaXRpb246IHJlbGF0aXZlOw0KfQ0KDQpAbWVkaWEobWluLXdpZHRoOjc2OHB4KSB7DQogIC5uYXYtcmlnaHQgew0KICAgIGZsb2F0OiByaWdodDsNCiAgfQ0KDQogIC5uYXYtZWx0IHsNCiAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jazsNCiAgICAgIHZlcnRpY2FsLWFsaWduOiB0b3A7DQogICAgICBtYXJnaW4tbGVmdDogMTVweDsNCiAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTsNCiAgfQ0KfQ0KDQoubmF2IC5wbGFjZWhvbGRlciB7DQogIHBhZGRpbmc6IDdweCAxMHB4Ow0KICBtYXJnaW46IDNweCAwOw0KICBjb2xvcjogIzg4ODsNCiAgYm9yZGVyOiAycHggZGFzaGVkOw0KfQ0KDQoubmF2LmRhcmsgLnBsYWNlaG9sZGVyIHsNCiAgY29sb3I6ICNjY2M7DQp9DQoNCi5uYXYgLnBsYWNlaG9sZGVyIHsNCgl2aXNpYmlsaXR5OiBoaWRkZW47DQp9DQoNCmJvZHkuYW52aWwtaGlnaGxpZ2h0IC5uYXYgLnBsYWNlaG9sZGVyIHsNCgl2aXNpYmlsaXR5OiB2aXNpYmxlOw0KfQ0KDQoubmF2LWVsdCAuZHJvcC1oZXJlIHsNCglwb3NpdGlvbjogYWJzb2x1dGU7DQoJdG9wOiAwOw0KCWxlZnQ6IC0xMHB4Ow0KCWJvdHRvbTogMDsNCgl3aWR0aDogNXB4Ow0KfQ0KDQouaGVhZGVyIHsNCglwYWRkaW5nOiAxMHB4IDEwMHB4IDMwcHg7DQogICAgcGFkZGluZy1sZWZ0OiAxMCU7DQoJcGFkZGluZy1yaWdodDogMTAlOw0KCW1pbi1oZWlnaHQ6IDEyMHB4Ow0KCWJhY2tncm91bmQ6IHVybChfL3RoZW1lL2hlYWRlci5qcGcpIGNlbnRlci9jb3ZlcjsNCglmb250LWZhbWlseTogJ1BhY2lmaWNvJywgY3Vyc2l2ZTsNCgljb2xvcjogd2hpdGU7DQoJZm9udC1zaXplOiA4MHB4Ow0KICAgIC8qbGluZS1oZWlnaHQ6IDEuMjsqLw0KfQ0KDQouaGVhZGVyIC5wbGFjZWhvbGRlciB7DQogIGJvcmRlcjogMnB4IGRhc2hlZCAjZGRkOw0KICBjb2xvcjogI2RkZDsNCiAgcGFkZGluZzogMjBweDsNCn0NCg0KLmNhcmQgew0KCW1hcmdpbjogNTBweCAxMHB4IDUwcHg7DQoJYmFja2dyb3VuZDogd2hpdGU7DQoJcGFkZGluZzogMzBweDsNCgljb2xvcjogIzQ0NDsNCgltYXgtd2lkdGg6IDY4MHB4Ow0KfQ0KDQouY2FyZCAucGxhY2Vob2xkZXIgew0KICBib3JkZXI6IDJweCBkYXNoZWQgIzg4ODsNCiAgcGFkZGluZzogMjBweDsNCiAgdGV4dC1hbGlnbjogY2VudGVyOw0KfQ0KDQouYm9keSB7DQogIG1hcmdpbi1sZWZ0OiA1cHg7DQogIG1hcmdpbi1yaWdodDogNXB4Ow0KfQ0KDQpAbWVkaWEobWluLXdpZHRoOjcwMHB4KSB7DQoJLmNhcmQgew0KCQltYXJnaW4tbGVmdDogYXV0bzsNCgkJbWFyZ2luLXJpZ2h0OiBhdXRvOw0KCQltYXgtd2lkdGg6IDY4MHB4Ow0KCX0NCn0NCg==}
+  - {name: standard-page.html, content: PGRpdiBhbnZpbC1zbG90LXJlcGVhdD0iZGVmYXVsdCI+DQo8L2Rpdj4NCg0KPGNlbnRlciBzdHlsZT0iY29sb3I6Izg4ODsgbWFyZ2luOiA1MHB4OyI+DQogIDxpPlRoaXMgaXMgYSBwbGFjZWhvbGRlciBmb3IgeW91ciBhcHAncyBjdXN0b20gSFRNTC4gRWRpdCBpdCBieSBjaGFuZ2luZyB0aGUgdGhlbWUgYXNzZXRzLjwvaT4NCjwvY2VudGVyPg0K}
+server_modules:
+- {name: ServerModule1, code: "import google.auth, google.drive, google.mail\nfrom\
+    \ google.drive import app_files\nimport tables\nfrom tables import app_tables\n\
+    import anvil.server\n\n# This is a server module. It runs on the Anvil server,\n\
+    # rather than in the user's browser.\n#\n# To allow anvil.server.call() to call\
+    \ functions here, we mark\n# them with @anvil.server.callable.\n# Here is an example\
+    \ - you can replace it with your own:\n#\n# Put this code in a new Server Module:\n\
+    @anvil.server.callable\ndef get_results():\n  return list(app_tables.questions.search())\n\
+    \n@anvil.server.callable\ndef get_counter():\n  count = list(app_tables.count.search())\n\
+    \  return count[0]['counter']\n\n@anvil.server.callable\ndef get_selection():\n\
+    \  count = list(app_tables.count.search())\n  return count[0]['selectionMade']\n\
+    \n@anvil.server.callable\ndef update_count():\n  row = list(app_tables.count.search())\n\
+    \  row[0]['counter'] += 1\n  \n@anvil.server.callable\ndef winnerArc():\n  count\
+    \ = list(app_tables.count.search())\n  count[0]['arcticW'] = True\n\n@anvil.server.callable\n\
+    def selectionT():\n  count = list(app_tables.count.search())\n  count[0]['selectionMade']\
+    \ = True\n\n@anvil.server.callable\ndef selectionF():\n  count = list(app_tables.count.search())\n\
+    \  count[0]['selectionMade'] = False\n  \n@anvil.server.callable\ndef get_images():\n\
+    \  pic_folder = google.drive.app_files.images\n  results = list(app_tables.questions.search())\n\
+    \  count = list(app_tables.count.search())\n  counter = count[0]['counter']\n\
+    \  length = len(pic_folder.files)\n  if counter < length:\n    if results[counter]['Choice1_Value']\
+    \ >= results[counter]['Choice2_Value']:\n      counter = 2*counter\n      return\
+    \ pic_folder.files[counter]\n    else:\n      counter = 2*counter + 1\n      return\
+    \ pic_folder.files[counter]\n  else:\n    return\n  \n@anvil.server.callable\n\
+    def get_options():\n  pic_folder = google.drive.app_files.images2\n  results =\
+    \ list(app_tables.questions.search())\n  count = list(app_tables.count.search())\n\
+    \  counter = count[0]['counter']\n  length = len(pic_folder.files)\n  if counter\
+    \ < length:\n    return pic_folder.files[counter]\n  else:\n    return  "}
+renamed: true

@@ -3,6 +3,11 @@ import React, { Component } from "react";
 import { Button, Card, CardImg, CardText, CardTitle } from "reactstrap";
 
 class FileHolder extends Component {
+
+  navigateToForm(formId) {
+    window.location.assign('/form/'+formId);
+  }
+
   render() {
     return (
       <Card body>
@@ -14,7 +19,7 @@ class FileHolder extends Component {
         />
         <CardTitle>{this.props.formName}</CardTitle>
         <CardText>{this.props.fileDescription}</CardText>
-        <Button color="primary">Edit</Button>
+        <Button color="primary" onClick={() => this.navigateToForm(this.props.formId)}>Edit</Button>
       </Card>
     );
   }

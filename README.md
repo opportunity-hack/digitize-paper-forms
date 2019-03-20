@@ -1,6 +1,9 @@
+Check this for the source of this project: https://github.com/nicholaskajoh/React-Django
+
 # Setup
 ```
 npm install
+pip install -r requirements.txt
 ```
 
 # To Develop React app
